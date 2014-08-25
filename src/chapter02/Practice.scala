@@ -16,7 +16,11 @@ object Practice {
 		countdown(0)
 		countdown(10)
 		
-		wordCount("Hello")
+		wordCount("Hello");
+		
+		println(product("Hello"));
+
+		println(calc(2, 4));
 	}
 
 
@@ -55,5 +59,32 @@ object Practice {
 		println(count);
 				
 		println(word.map(_.toLong).product );
+	}
+	
+	def product(s: String) = {
+	  var wordCount = 1L;
+	  for(ch <- s) wordCount *= ch.toLong;
+	  
+	  wordCount;
+	}
+	
+	// Char형 가변인자 함수
+	def recursiveProduct(chars: Char*): Long = {
+	  if(chars.length == 0) return 1L;
+	
+	  // 시퀀스의 head는 초기 원소.. tail은 나머지 모든 원소의 시퀀스 .. 인자 시퀀스로 변환 _* 
+	  // chars.tail로 호출 할 경우 
+	  // err : Multiple markers at this line
+	  // - type mismatch; found : Seq[Char] required: Char
+	  chars.head * recursiveProduct(chars.tail:_*);
+	}
+	
+	def calc(x: Long, n: Long): Long = {
+	  if(n > 0){
+		  if(n%2 == 0 && n > 2) calc(calc(x, n/2), 2);
+		  else x*calc(x, n-1);
+	  }
+	  else if(n < 0) 1/calc(x, -n);
+	  else 1L;
 	}
 }
