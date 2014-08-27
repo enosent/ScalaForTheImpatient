@@ -90,6 +90,15 @@ object ArrayTest {
 	  
 	  val result4 = arrs filter { _%2 == 0 } map { 2*_ }
 	  println(result4.toBuffer);
+	  
+	  val sum = Array(1, 7, 2, 9).sum;
+	  println(sum);
+	  
+	  val bb = Array(1, 7, 2, 9);
+	  scala.util.Sorting.quickSort(bb);
+	  println(bb.toBuffer);
+	  
+	  
 	}
 	
 }
