@@ -2,6 +2,9 @@ package chapter03
 
 import scala.util._
 import scala.collection.mutable.ArrayBuffer
+import java.awt.datatransfer._
+import scala.collection.JavaConversions.asScalaBuffer
+import scala.collection.mutable.Buffer
 
 object Practice {
 
@@ -55,7 +58,11 @@ object Practice {
 		
 		 
 		val americas = for (timeZone <- java.util.TimeZone.getAvailableIDs if timeZone startsWith "America") yield timeZone.replaceFirst("America/", "");
-		println("America : " + americas.toBuffer)
+		println("America : " + americas.toBuffer);
+		
+		val flavors = SystemFlavorMap.getDefaultFlavorMap().asInstanceOf[SystemFlavorMap]
+		val imageFlavors : Buffer[String] = flavors.getNativesForFlavor(DataFlavor.imageFlavor)
+		println("ImageFlavors : " + imageFlavors)
 	}
 
 	def randomArray(n: Int) = {
