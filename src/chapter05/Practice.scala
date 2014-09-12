@@ -3,6 +3,10 @@ package chapter05
 import chapter05.practice.BankAccount
 import chapter05.practice.Time
 import chapter05.practice.OtherTime
+import chapter05.practice.PersonName
+import chapter05.practice.Employee
+import chapter05.practice.Employee
+import chapter05.practice.QEmployee
 
 object Practice extends App {
 
@@ -26,4 +30,17 @@ object Practice extends App {
   println("age changed : " + p1.age)
   val p2 = new chapter05.practice.Person(10)
   println("age : " + p2.age)
+  
+  
+  val personName = new PersonName("Fred Smith")
+  
+  println(personName.firstname);
+  println(personName.lastname);
+  
+  
+  val emp = new Employee();
+  println(emp.name )
+  
+  val emp2 = new QEmployee();
+  println(emp2.name +", " + emp2.salary );
 }
