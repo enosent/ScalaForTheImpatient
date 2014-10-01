@@ -1,6 +1,7 @@
 package coursera
 
 import scala.annotation.tailrec
+import Math.abs
 
 object TailRecursion {
 
@@ -46,4 +47,19 @@ object TailRecursion {
     else if (money <= 0 && !coins.isEmpty) 0
     else countChange(money, coins.tail, "first") + countChange(money - coins.head, coins, "second")  
   }
+  
+  val tolerance = 0.0001                          //> tolerance  : Double = 1.0E-4
+  
+  def isCloseEnough(x: Double, y:Double) = abs((x - y) / x) / x < tolerance   
+  	
+  def fixedPoint(f: Double => Double)(firstGuess: Double) = {
+  	def iterate(guess: Double): Double = {
+  		//println("guess = " + guess)
+  		val next = f(guess)
+  		if(isCloseEnough(guess, next)) next
+  		else iterate(next)
+  	}
+  	iterate(firstGuess)
+  }                                               //> fixedPoint: (f: Double => Double)(firstGuess: Double)Double
+    
 }
